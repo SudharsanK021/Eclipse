@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<!-- Suite Level Parameters-->
+<!--parameter name="driverType" value="chrome" /-->
+<parameter name="browserURL" value="https://www.saucedemo.com/" />
+<!-- Eventhough username is mentioned in SuiteLevel, test will consider Test Level Parameter -->
+<parameter name="username" value="locked_out_user" />
+  <test name="SwagLabSiteTest">
+	  <!-- Test Level Parameters -->
+	  <parameter name="username" value="standard_user" />
+	  <parameter name="password" value="secret_sauce" />
+	  <parameter name="browserHeader" value="Swag Labs" />
+    <classes>
+      <class name="MyTestNGPractice.ParametersSimpleLogin">
+		  <methods>
+			  <include name="validateLogin"> </include>
+			  <include name="validateHomePage"></include>
+		  </methods>
+	  </class>
+    </classes>
+  </test> 
+</suite>

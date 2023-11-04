@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SuiteLevelGrouping">
+	<parameter name="browserURL" value="https://www.saucedemo.com/" />
+	<test name="SuiteLevelGrouping">
+	     <groups>
+			 <run>
+				 <include name="HealthCheck"></include>
+			 </run>
+		 </groups>
+			 <classes>
+				  <class name="MyTestNGPractice.InitialGroupEx" />
+				  <class name="MyTestNGPractice.SuiteLevelGroupEx" />
+				  <class name="MyTestNGPractice.MetaGroupingEx" />
+			 </classes>
+	</test>
+</suite>

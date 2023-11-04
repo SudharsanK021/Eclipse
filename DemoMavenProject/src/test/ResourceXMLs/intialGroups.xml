@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="IntialGroup">
+	<parameter name="browserURL" value="https://www.saucedemo.com/" />
+	<test name="SampleGroupTest">
+		<parameter name="driverType" value="edge" />
+		<parameter name="browserURL" value="https://www.saucedemo.com/" />
+		<parameter name="username" value="performance_glitch_user" />
+		<parameter name="password" value="secret_sauce" />
+		<parameter name="browserHeader" value="Swag Labs" />
+		<parameter name="checkoutMessage" value="Checkout: Your Information" />
+	     <groups>
+			 <run>
+				 <include name="FunctionalityCheck"></include>
+			 </run>
+		 </groups>
+			 <classes>
+				 <class name="MyTestNGPractice.SwagLabsTest" />
+			 </classes>
+	</test>
+</suite>
