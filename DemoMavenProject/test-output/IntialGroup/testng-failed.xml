@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [IntialGroup]" guice-stage="DEVELOPMENT">
+  <parameter name="browserURL" value="https://www.saucedemo.com/"/>
+  <test thread-count="5" name="SampleGroupTest(failed)">
+    <parameter name="browserHeader" value="Swag Labs"/>
+    <parameter name="password" value="secret_sauce"/>
+    <parameter name="driverType" value="chrome"/>
+    <parameter name="username" value="standard_user"/>
+    <groups>
+      <run>
+        <include name="FunctionalityCheck"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="MyTestNGPractice.SwagLabsTest">
+        <methods>
+          <include name="selectProduct"/>
+          <include name="assertCartPage"/>
+          <include name="beforeTest"/>
+          <include name="checkoutProduct"/>
+          <include name="afterTest"/>
+        </methods>
+      </class> <!-- MyTestNGPractice.SwagLabsTest -->
+    </classes>
+  </test> <!-- SampleGroupTest(failed) -->
+</suite> <!-- Failed suite [IntialGroup] -->

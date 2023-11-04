@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SuiteSample">
+  <test name="AnnotationsSample">
+    <classes>
+      <class name="MyTestNGPractice.AnnotationsSample">
+		  <methods>
+			  <include name="testMethod" />
+		  </methods>
+	  </class>
+	  <class name="MyTestNGPractice.SoftAssertEx">
+		  <methods>
+			  <include name="testMethod_2" />
+		  </methods>
+	  </class>
+    </classes>
+  </test> 
+</suite>
+
+

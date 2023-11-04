@@ -1,0 +1,690 @@
+/**
+Continue from Here - https://www.youtube.com/watch?v=90_Pv6ixtj0&list=PLacgMXFs7kl97cZzKPIc4VqLtcqVSs07j&index=17
+**/
+
+TestNG - Test for Next Generation
+
+> Testing framework which can be used in all kind of testing{unit, end2end, functional,inetgration}
+> Created by Cedric Beust
+> DataProvided - Support for Data Driven Testing
+> Available in form of Library
+
+
+*************** Driver.close() vs Driver.quit() ***********Important
+
+close() - will close the browser one by one
+quit()  - will close al the browser instances once the test execution is done
+
+
+***************Configurations
+	> Add TestNG Library to Project
+	
+				1. Maven 
+						<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+						<dependency>
+						    <groupId>org.testng</groupId>
+						    <artifactId>testng</artifactId>
+						    <version>7.8.0</version>
+						    <scope>test</scope>
+						</dependency>
+
+	> Add TestNG PlugIn to IDE 	
+				There are 4 ways , but below are the 2 important ways
+						1. Help > Eclipse MarketPlace
+								Search TestNG and Install
+						
+						2. Help > Install New Software
+									Click "Help -> Install New Software..." on top level menu
+									Paste the url https://testng.org/testng-eclipse-update-site to Work with:  text field and press enter.
+									Select the plugins
+									Click "Next" button and accept the license to complete the installation.
+									Restart Eclipse
+									
+	
+	> Add TestNG Library to Project (If it is normal Java Project)
+				Right Click on Project > Build Path
+				Java Build Path > Libraries Tab > Add Library
+				Select TestNG and Finish
+				
+				
+				
+
+
+
+************* TestNG Basics
+
+> TestNG Class
+		When a Java Class consists of TestNG Methods in it , it is called TestNG Class
+		
+
+> TestNG Method
+		When a Method has a "@Test" Annotation above, then it is TestNG Method
+		
+		Each Method represents a TestCase
+		
+		TestNG Methods in Class will be executed in Alphabetical order
+		
+
+> Run Option
+		Will only run the particular method
+
+> Run All
+		Will Run all the methods inside the TestNG Class
+
+
+************** TestNG XML Structure
+
+
+It is a configuration file which contains List of TestNG Class and TestNG Methods
+It will also take care of the order of execution
+eg. If we wanna execute 2 methods from CLass A and 1 method from CLass B , we can use the xml to do that
+
+
+
+TestNG XML Structure
+TestSuite -> Tests - > Test Steps/Methods
+
+Syntax
+suite
+	test @name="Can be anything"	<!--  Will execute end to end all methods as a single test case -->
+		classes <!-- If we want to use multiple classes -->
+			class <!-- The name of CLass should be the TestNG Class Name -->
+				methods <!-- Can be used to include multiple TestNG Methods -->
+					include <!-- mentions the particular method -->
+
+
+
+************** TestNG Assertions
+
+
+Verification of Actual with Expected Outcomes to determine Test Execution Result
+
+> Assert Class is static
+	> Methods of this class can be called by className
+			Sample Methods
+					assertEquals	  <Compare Data Types>
+					assertNotEquals <Compare Data Types>
+					assertTrue
+					assertFalse
+					assertNull	
+					assertNotNull
+
+
+
+************** TestNG Hard and Soft Assertions
+
+> Hard Assertions {eg. ON.FAIL = true}
+
+	>Class Name : Assert
+	
+	Throws exception immediately upon assert failure.
+	The code after the assertion will be unreachable if it fails.
+	
+	>Important Methods:
+					assertEquals	  <Compare Data Types>
+					assertNotEquals <Compare Data Types>
+					assertTrue <Boolean Comparison, checks for the true value>
+					assertFalse <Boolean Comparison, checks for the false value>
+					assertNull	
+					assertNotNull
+
+> Soft Assertions{eg. ON.FAIL = false}
+	Throws Exception at the end of the Test (or) throws in specified line of code
+	
+	>Class Name : SoftAssert
+	
+	>Important Methods:
+		new SoftAssert().assertAll() -> Will throw the Exception at the line were method is called
+					-> Throws exception only if there is one.
+	
+
+*****Asserting Borders
+	In Inspect Element we will have only Hexa Value of the Element
+	But Selenium takes only RGB value
+	
+	
+
+
+**************TestMG Annotations
+
+Form of Metadata that can be added to Java Source Code
+		What's Source Code :
+				Package, Class, Methods, Variables, Parameters
+				
+					Above All combined is source code
+
+
+***********Annotations 
+@Test
+@BeforeSuite
+@AfterSuite
+@BeforeClass
+@AfterClass
+@BeforeMethod
+@AfterMethod
+@BeforeTest
+@AfterTest
+@BeforeGroup
+@AfterGroup
+
+
+*************The above mentioned annotations can be used , whenever we are triggering execution from XML file
+
+@DataProvider
+@Parameter
+@Factory
+@Listeners
+@Ignore
+
+
+******************@Test
+
+@Test Annotation is really important.
+If @Test annotation is not mentioned above the methods declared in The Java Test File, it will not be considered to run the test case
+
+
+
+
+
+
+**********Annotations Explanation
+<suite>
+<test>
+<classes>
+<class>
+<method>
+<include>
+
+
+******** If we have multiple Methods, then the below will be executed twice
+
+@BeforeMethod
+@AfterMethod
+
+
+******** IF we jave multiple class files, the below will be executed twice,
+
+@BeforeClass
+@BeforeMethod
+@AfterMethod
+@AfterClass
+
+
+
+*******************TestNG Parameters (2/9/2023)
+
+
+Passing Parameters to Methods
+
+****We can pass parameters from TestNG XML using the below tag
+		<parameter name = ""  value ="" />
+		
+****Defining Parameters in Different Levels
+
+	****Priority is for Test Level Parameters
+				- Since the parameters are invoked first in suite level and then in test level at last, 
+				  Test Level has high priority
+				
+
+		Suite Level
+			Paramters can be used in all test methods
+			
+		***** All Tests will be running in single browser
+		***** If we use Browser Information as Parameters in Test Case Level, Two Instance of Browser will be invoked
+		
+		
+		Test Level
+			  Can be used only inside the testcase only
+		
+		***** Each Tests will be running in one browser per test
+	
+****Usage
+		Mention the Parameter name and value in XML
+		Mention the Parameter tag in method Level
+		Mention the Parameter name inside the Parameter Annotations
+		Define a Parameter in the method as well
+		
+		Single Value
+				Can be provided in Double Qoutes
+				
+				Syntax -> @Parameters("name")
+		
+		Multiple Values
+				Need to Pass in Curly Brackets
+				
+				Syntax -> @Parameters({"name","password"})
+				
+				
+
+**********Optional Parameters in TestNG (3/9/2023)
+
+****Use of Optional Parameters
+		Example : BrowserName
+		When Tester doesnt provide a predefined browsername, TestNG will take a default browserName Value
+		
+	Pass the @Optional Annotation inside the Method Signature
+	Syntax: @Optional("chrome")
+	
+
+
+***********************Enabled / Disable Test Cases (8/9/2023)
+
+Syntax for Enable Test
+<test enabled = "true">
+
+Syntax for Disable Test
+<test enabled = "false">
+
+
+By Default
+<test>  -->> Test is enabled
+
+
+***********************Prioritizing Test Methods
+
+********* Why Priority
+	In TestNG when we Declare method, and Use RunAll method in wont Execute the methods in Order it is declared
+	Instead it will execute in the order of Method Name - ASCII Value
+	
+	To make TestNG work our choice we use,	
+			XML{ even in XML , there is a part where }
+			Priority concept
+			
+
+********* Defining Priority
+
+	
+	Syntax
+	@Test(priority={integerValue})
+	
+	Example
+	@Test(priority=1)
+	
+	Default
+	If we dont Assign Priority -> then default priority is 0
+		- So Method with Default Priority will execute
+
+
+********* Defining Negative Priority
+
+	***** Can also pass negative Values as well
+		  Priority Value is in Integer Value
+		  Integer Value range is between -2^31 to 2^31
+
+
+
+********* Providing Same Priority
+
+	If we Provide same priority to two Methods,
+			It will first check the ASCII Value and then execute based on order
+
+
+********* Priorities vs XML
+	
+	When we mention the Priorities in TestNG Class, then Even if we use XML to order the TestMethods , it will execute only on Priorities
+
+
+
+*************Ignore Test in TestNG
+
+JAVA Levels
+	
+	Package -> Class -> Method
+
+
+******Ignore Specific Test Methods
+
+		> Ignoring in Java Class in Method Level
+				1. @Test(enabled=false)
+				2. @Ignore
+				
+				
+				> Priority
+					@Ignore > @Test(enabled="false")
+						- @Ignore has highest priority
+
+
+******Ignore Class
+
+		> Add @Ignore in Class Level
+		
+		
+******Ignore All Methods in Package Level
+
+			1. Create "package-info.java"
+			2. Place Annotations in the above file to apply in Package Level
+
+
+
+************* Grouping in TestNG (19/9/2023)
+
+****Note: 
+		1. @Before and @After wont triggered automatically in Grouping
+			We need to add those before and after methods in a group in order to execute them
+		
+		2. When same methods are mapped to two unique Group names and called in XML, these methods will only execute once
+
+****** What is Grouping
+			
+			Categorization of Test / Test Methods
+			
+			Grouping Multiple Test into each Group
+				example: SmokeGroup, RegressionGroup, DailyBuildGroup
+			
+			What ?
+				Create Groups
+				Link Multiple Groups to Multiple Tests
+						One to One 
+						One to Many
+						Many to One
+						Many to Many
+				
+				
+				
+****** How Grouping
+
+		Add groups parameters into Test Annotations
+		groups - parameters accepts String array.
+		
+		Groups can be run from XML file.
+
+********** Test Level Execution		
+		
+		Syntax : 
+		
+		In TestNg Java File		
+			@Test(groups = {""})  - In TestNG Java File
+			
+		In TestNG XML File
+		
+			In <Test> Level
+				Syntax
+					<test>
+						<groups>
+							<run>
+								<include name="smoke" />
+							</>
+						<groups/>
+						<classes>
+							<Class>Mention all the classes</>
+						</>
+					</>	
+					
+			****** In the Test Level, Class mentioned in <class> tags will be considered to search the availability of "smoke" group name	
+
+
+WHat if Same Test method is mapped to 2 groups?
+Does it run the same methods 2 times....
+			
+			
+			META Group
+				A Group which consists of multiple groups in it
+				You can map your meta grp to multiple small grps and run the execution
+				
+				
+				How to implement
+					1. First define the meta group under "define" tag
+					2. Map the metagroup under "run" tag
+				
+				 
+				Syntax
+					In <Test> Level
+		
+					<suite name="TestSuite">
+					<test name="YourTest">
+					<groups>
+					<define name="meta-group">
+						<include name="group1" />
+						<include name="group2" />
+					</define>
+					</groups>
+					<classes>
+					<!-- Test classes here -->
+					</classes>
+					</test>
+					</suite>
+			
+			
+			
+			Partial Group
+					Add Group parameter in Class Level
+					Adding so, will make all methods map to Class level group
+					
+			
+		
+			
+
+********** Suite Level Execution
+			
+			Group mentioned in Suite Level will be applicable to all Test mapped to the Suite
+			
+			Syntax: 
+				<suite>
+					<groups>
+						<run>
+							<include>
+							</>
+						</>
+					</>
+				</>
+				
+
+********** Suite + Test Level
+		
+			> Common groups of all test has to be mentioned in Suite Level
+			> Unique groups has to be mnetioned in test level
+			
+
+
+********** Using Regular Expression
+********** Using Partial Groups
+********** Using Exclusion Groups
+
+
+*******************DataProvider - 23/10/2023
+
+******What
+			
+			Dataprovider is a container which contains sets of Test data that can be passed to test method
+			Data sets are acts like an Object Array
+			Which can pass different set of Data.
+			
+			
+******How
+			
+			1. Create a Method which acts as DataProvider Container, in other words will store the Data Sets
+			2. Annotate that method with "@DataProvider" Annotation
+			3. Give a Unique name to that DP method. Syntax : @DataProvider(name="something")
+			4. Create Datasets by means of collections
+			5. Return that Data
+			6. Add dataProvider attribute to Test Method that you are using
+			
+
+******Why
+
+			By means of using dataProvider, Exploratory / Combinatorial Datasets can be used for testing without repitative Test method call
+			Based on Size of Dataset, those many times the Test Method will execute
+			
+			
+			
+			
+****** What can be done when you haven't provided any data to the Data Provider
+			
+			When you havent assigned a name to @DataProvider, 
+			then the Method Name which has the data set can be used inside @Test(dataProvider="methodName")
+	
+	
+	
+****** Notes:
+	
+		You cannot add dataProvider to a Before and After Annotations
+		You cannot able to quit the browser
+		
+
+
+
+******************* Parameters of TestMethod and ReturnType of DataProvider
+
+****** What Return Types are supported by DataProvider?
+
+Object [] 				- Returns as single string in Test Method
+Object[][] 				- Returns as Array of String[] in Test Method
+{Used in Case of Collection}
+Iterator<Object> 		- Returns as Single Iterator String in Test Method
+Iterator<Object[]>		- Returns as Array of Iterator String in Test Method
+
+****** What Data Types are supported by DataProvider?
+All Datatypes available are supported 
+	1. String, Float, Int, Double, Boolean, Character
+	2. User Defined Data Types
+	
+
+****** But why Object[][] instead of Datatype Name?
+Object is Superclass of Java Datatypes
+So Using Object, we can define any type of Datatype and it will be able to consume the data, without manually define DT everytime
+
+
+********Mostly Object is used beacuse, u can store multiple datatypes into single array
+
+
+
+JACKED ARRAY
+	Column Count across all rows in Array is not same
+	
+	
+	
+
+******************* Using DataProvider Partially in Test Method
+
+*******What are indices
+			Its used to pass partial data set to Test Method by using indices
+			
+*******Why indices
+			By means of this, we can control what data has to be passed to method and what has to be restricted
+			
+			Also we can re-execute the failed tests by means of using Index Number( kinda like passing executionNumber) of Test Data
+			
+
+*******How indices
+			@DataProvider(indices={}) // Since Index are in Int value , the Indices attribute is a Integer[] Array
+
+
+
+
+
+
+******************* DataProvider in Seperate Class (28/10/2023)
+
+****Why
+		To use that class kind of like a database but in same project's class file.
+		
+
+****What
+		This class is nothing special that other class, it just stoes the DataProcider method in it.
+		
+		
+	
+	******* DataProviderClass - which is a Parameter
+	
+					
+					
+					****What
+							
+							This parameter is to specify the test method/test case abt which class has the Test data.
+							Along it with we may need to specify the dataProvider Parameter, i.e. Which method to use in that DataProviderClass
+							
+					
+					**** How
+							
+							Syntax: @Test(dataProvider="methodname" , dataProviderClass=ClassName.class)
+							
+
+Practices
+	Try to have 2 dataprovider, one in Test case and anaother in DataProviderClass with same name and run
+	
+	Result : It uses the Data provider Class for testdata
+	
+	
+	Try to provide DataProviderclass first and then dataProvider in the @Test as parameters
+	
+	Result : Works fine
+	
+	
+	
+
+
+******** Integration between Excel and DataProvider(28/10/2023)
+
+				Libraries for Manipulating Excel using Java - Apache POI, JXL
+				
+				Installation for Maven
+						To install Apache the libraries needed are poi, ooxml
+						
+						
+				Reading and Writing to Excel:
+					Excel Structure in Real Time and Java
+						
+						Types
+							xls - HSSF
+							xlsx - XSSF
+						
+						Syntax
+							Real Time - Workbook > Sheet > Row > Cell
+							
+							Java - XXSFWorkbook > XSSFSheet > Row > Cell
+							
+						Manipulation of Excel in Java:
+								1. Create - createSheet, createRow, createCell
+								2. Retreive - getSheet, getRow, getCell
+								3. Add/Update - setSheet. setRow, setCell
+								
+				
+		********New Class used:
+					
+					DataFormatter Class
+					
+						What
+						
+						There are multiple dataformats avaialble in Excel, but in order to maintain a discipline on returntype of retreival we use DataFormatter
+						
+						How:
+						
+						It will retreive the value from excel and return it into userdefined Datatype disregard of diff format we retreive from Excel
+							
+		
+		Notes:
+			Using OPCPackage Class in Reading FileInputStream
+			
+			
+			
+			
+			
+******** Enable Parallel Execution with DataProvider(29/10/2023)
+				
+				This concept covers configuration of two parts
+						1. Enable Parallel Execution to true 
+						2. enable the Thread Count for the execution
+						
+						
+						
+						1. Enable Parallel ( This config must be done on class where the DataProvider is present )
+								
+								Syntax : @DataProvider(parallel=true)
+								
+						2. Thread count ( This config must be done in the xml suite level tag of Test class
+						
+								Syntax <suite data-provider-thread-count="{value}"  />
+								
+								
+			
+		****** What happens when we enable only parallel execution
+		
+				Result: Disaster!, it is trying to open all the browser, but at the same time, it is unable to switch between browsers to perform action
+						Instead it performs two or more actions in a single test case itself.
+						
+				******Note:
+						Always use close() and quit() while doing parallel execution
+			
+			
+			
+

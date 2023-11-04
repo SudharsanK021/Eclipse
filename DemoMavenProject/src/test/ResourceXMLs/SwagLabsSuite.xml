@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SwagLabSuite">
+  <test name="IgnoreMethodLevelExample" enabled="false">
+	<parameter name="driverType" value="chrome" />
+	<parameter name="browserURL" value="https://www.saucedemo.com/" />
+	<parameter name="username" value="standard_user" />
+	<parameter name="password" value="secret_sauce" />
+	<parameter name="browserHeader" value="Swag Labs" />
+    <classes>
+      <class name="ignorePackage.IgnorePackageExample">
+		  <methods>
+			  <include name="validateLogin" />
+			  <include name="validateHomePage" />
+			  <include name="selectProduct" />
+			  <include name="assertCartPage" />
+			  <include name="continueShopping" />
+		  </methods>
+	  </class>
+    </classes>
+  </test>
+  <test name="SwagLab_ContinueShopping" enabled="false">
+	<parameter name="driverType" value="chrome" />
+	<parameter name="browserURL" value="https://www.saucedemo.com/" />
+	<parameter name="username" value="standard_user" />
+	<parameter name="password" value="secret_sauce" />
+	<parameter name="browserHeader" value="Swag Labs" />
+    <classes>
+      <class name="MyTestNGPractice.SwagLabsTest">
+		  <methods>
+			  <include name="validateLogin" />
+			  <include name="validateHomePage" />
+			  <include name="selectProduct" />
+			  <include name="assertCartPage" />
+			  <include name="continueShopping" />
+		  </methods>
+	  </class>
+	  <!--<class name="MyTestNGPractice.SwagLabsTest">
+		  <methods>
+			  <include name="validateHomePage" />
+		  </methods>
+	  </class>-->
+    </classes>
+  </test>
+  <test name="SwagLab_CheckoutProduct" enabled="true">
+    <parameter name="driverType" value="edge" />
+	<parameter name="browserURL" value="https://www.saucedemo.com/" />
+	<parameter name="username" value="performance_glitch_user" />
+	<parameter name="password" value="secret_sauce" />
+	<parameter name="browserHeader" value="Swag Labs" />
+	<parameter name="checkoutMessage" value="Checkout: Your Information" />
+    <classes>
+      <class name="MyTestNGPractice.SwagLabsTest">
+		  <methods>
+			  <include name="validateLogin" />
+			  <include name="validateHomePage" />
+			  <include name="selectProduct" />
+			  <include name="assertCartPage" />
+			  <include name="checkoutProduct" />
+		  </methods>
+	  </class>
+    </classes>
+  </test> 
+  <test name="SwagLab_InvalidLogin" enabled="true">
+	<parameter name="driverType" value="chrome" />
+	<parameter name="browserURL" value="https://www.saucedemo.com/" />
+	<parameter name="username" value="standard_user" />
+	<parameter name="password" value="secretsauce" />
+	<parameter name="browserHeader" value="Swag Labs" />
+	<parameter name="invalidErrorMessage" value="Epic sadface: Username and password do not match any user in this service" />
+    <classes>
+      <class name="MyTestNGPractice.SwagLabsTest">
+		  <methods>
+			  <include name="validateLogin" />
+			  <include name="validateInvalidCredentials" />
+		  </methods>
+	  </class>
+    </classes>
+  </test> 
+ </suite>

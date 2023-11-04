@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- This is Suite + Test Level Grouping
+     The Common Groups has to be mentioned in the Suite Level
+     Whereas the Unique Groups has to be mentioned in Test Level 
+-->
+
+
+<suite name="SuiteLevelGrouping">
+	<!-- This is Suite Level Common Group -->
+	<groups>
+			 <run>
+				 <include name="Common"></include>
+				 <include name="HealthCheck"></include>
+			 </run>
+	</groups>
+	<test name="SuiteLevelGrouping">
+		
+		<!--  These are Test Level Unique Groups-->
+	     <groups>
+			 <run>
+		         <include name="InitialMetaExample1" />
+				 <include name="SuiteMetaExample1" />
+				 <include name="MainMetaExample1" />
+			 </run>
+		 </groups>
+			 <classes>
+				  <class name="MyTestNGPractice.InitialGroupEx" />
+				  <class name="MyTestNGPractice.SuiteLevelGroupEx" />
+				  <class name="MyTestNGPractice.MetaGroupingEx" />
+			 </classes>
+	</test>
+</suite>

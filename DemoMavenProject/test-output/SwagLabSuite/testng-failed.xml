@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [SwagLabSuite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="SwagLab_CheckoutProduct(failed)">
+    <parameter name="browserHeader" value="Swag Labs"/>
+    <parameter name="password" value="secret_sauce"/>
+    <parameter name="browserURL" value="https://www.saucedemo.com/"/>
+    <parameter name="checkoutMsg" value="Checkout: Your Information"/>
+    <parameter name="driverType" value="edge"/>
+    <parameter name="username" value="performance_glitch_user"/>
+    <classes>
+      <class name="MyTestNGPractice.SwagLabsTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="checkoutProduct"/>
+          <include name="afterTest"/>
+        </methods>
+      </class> <!-- MyTestNGPractice.SwagLabsTest -->
+    </classes>
+  </test> <!-- SwagLab_CheckoutProduct(failed) -->
+</suite> <!-- Failed suite [SwagLabSuite] -->
